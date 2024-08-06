@@ -1,16 +1,35 @@
 import CardsGrid from "@/components/cards-grid";
 import Card from "@/components/card";
 
-export default function Home() {
+async function getData() {
+  const res = await fetch("http://localhost:3000/data/wishlist.json");
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+
+export default async function Home() {
+  const wishlist = await getData();
   return (
     <main>
-      <CardsGrid>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-      </CardsGrid>
+      <section className="flex justify-center ml-auto mr-auto">
+        <img src="/invitation-background.jpeg" alt="background invitation" />
+      </section>
+      <section>
+        <div className="pt-5 px-7 text-white lg:text-center">
+          <h2 className="text-4xl pb-2">Lista de ideas de regalos</h2>
+          <p className="text-lg">
+            Puedes ver, eligir y reservar un regalo o traer cualquier otro
+            presente.
+          </p>
+        </div>
+        <CardsGrid>
+          {wishlist.products.map((product, key) => (
+            <Card image={product.image} key={key} name={product.name} />
+          ))}
+        </CardsGrid>
+      </section>
     </main>
   );
 }
