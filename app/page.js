@@ -1,5 +1,6 @@
 import CardsGrid from "@/components/cards-grid";
 import Card from "@/components/card";
+import Image from "next/image";
 
 async function getData() {
   const res = await fetch("http://localhost:3000/data/wishlist.json");
@@ -14,7 +15,7 @@ export default async function Home() {
   return (
     <main>
       <section className="flex justify-center ml-auto mr-auto">
-        <img src="/invitation-background.jpeg" alt="background invitation" />
+        <Image width={899} height={1599} src="/invitation-background.jpeg" alt="background invitation" />
       </section>
       <section>
         <div className="pt-5 px-7 text-white lg:text-center">
