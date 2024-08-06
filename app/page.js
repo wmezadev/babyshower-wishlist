@@ -1,7 +1,16 @@
+import CardsGrid from "@/components/cards-grid";
+import Card from "@/components/card";
+
 export default function Home() {
   return (
-    <main className="">
-      hello world
+    <main>
+      <CardsGrid>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+      </CardsGrid>
     </main>
   );
 }
