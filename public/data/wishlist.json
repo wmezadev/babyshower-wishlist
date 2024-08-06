@@ -1,0 +1,68 @@
+{
+  "products": [
+    {
+      "name": "Kit de limpieza",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Toalla baño bebé",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Bañera",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Tetero",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Bata de baño bebé",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Pañales de tela",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Pijamas",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Kit de gorritos",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Cambiador Portátil",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Cobija / frazada bebé",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Manta antialérgica para bebé",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Canguro portabebés",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Medias para bebé",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Bodies/Mamelucos para bebé",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Lampara Led Mesa",
+      "image": "/mamelucos.jpg"
+    },
+    {
+      "name": "Pañalera",
+      "image": "/mamelucos.jpg"
+    }
+  ]
+}
