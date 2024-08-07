@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function useProducts() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingProduct, setIsLoading] = useState(false);
 
   const postToggleLockProduct = async ({ id, isLocked }) => {
     let result;
@@ -30,5 +30,5 @@ export default function useProducts() {
   const unLockProduct = async ({ id }) =>
     postToggleLockProduct({ id, isLocked: false });
 
-  return { isLoading, lockProduct, unLockProduct };
+  return { isLoadingProduct, lockProduct, unLockProduct };
 }
