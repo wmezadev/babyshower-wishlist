@@ -3,9 +3,9 @@ import Card from "@/components/card";
 import Image from "next/image";
 
 async function getData() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/data/wishlist.json`
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/products`, {
+    cache: "no-store",
+  });
   if (!res.ok) throw new Error("Failed to fetch data");
   return res.json();
 }
@@ -27,13 +27,18 @@ export default async function Home() {
         <div className="pt-5 px-7 text-white lg:text-center">
           <h2 className="text-4xl pb-2">Lista de ideas de regalos</h2>
           <p className="text-lg">
-            Puedes ver, eligir y reservar un regalo de forma anónima o traer cualquier otro
-            presente.
+            Puedes ver, eligir y reservar un regalo de forma anónima o traer
+            cualquier otro presente.
           </p>
         </div>
         <CardsGrid>
           {wishlist.products.map((product, key) => (
-            <Card image={product.image} key={key} name={product.name} />
+            <Card
+              image={product.image}
+              key={key}
+              name={product.name}
+              defaultIsLocked={product.isLocked}
+            />
           ))}
         </CardsGrid>
       </section>

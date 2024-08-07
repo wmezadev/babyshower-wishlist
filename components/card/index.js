@@ -5,10 +5,10 @@ import { useState } from "react";
 import LockModal from "../lock-product-modal";
 import UnlockModal from "../unlock-product-modal";
 
-const Card = ({ name, image }) => {
+const Card = ({ name, image, defaultIsLocked }) => {
   const [showLockModal, setShowLockModal] = useState(false);
   const [showUnlockModal, setShowUnlockModal] = useState(false);
-  const [isLocked, setIsLocked] = useState(false);
+  const [isLocked, setIsLocked] = useState(defaultIsLocked);
 
   return (
     <div
