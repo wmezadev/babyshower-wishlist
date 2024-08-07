@@ -1,5 +1,6 @@
 "use client";
 
+import useProducts from "@/hooks/useProducts";
 import {
   Dialog,
   DialogBackdrop,
@@ -8,11 +9,14 @@ import {
 } from "@headlessui/react";
 
 export default function Modal({
+  productId,
   productName,
   showModal,
   setShowModal,
   setIsLocked,
 }) {
+  const { isLoadingProduct, unLockProduct } = useProducts();
+
   return (
     <Dialog open={showModal} onClose={setShowModal} className="relative z-10">
       <DialogBackdrop
@@ -45,11 +49,21 @@ export default function Modal({
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <button
                 type="button"
-                onClick={() => {
-                  setIsLocked(false);
-                  setShowModal(false);
+                onClick={async () => {
+                  try {
+                    const resp = await unLockProduct({ id: productId });
+                    if (resp.status !== "ok")
+                      throw new Error(
+                        "Unlock product api error for productId:" + productId
+                      );
+                    setIsLocked(false);
+                    setShowModal(false);
+                  } catch (err) {
+                    console.error("products api error", err);
+                  }
                 }}
                 className="inline-flex w-full justify-center rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600 sm:ml-3 sm:w-auto"
+                disabled={isLoadingProduct}
               >
                 Confirmar
               </button>

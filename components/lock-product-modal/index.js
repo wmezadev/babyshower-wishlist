@@ -9,6 +9,7 @@ import {
 } from "@headlessui/react";
 
 export default function Modal({
+  productId,
   productName,
   showModal,
   setShowModal,
@@ -50,9 +51,14 @@ export default function Modal({
               <button
                 type="button"
                 onClick={async () => {
-                  await lockProduct({ id: 1 });
-                  setIsLocked(true);
-                  setShowModal(false);
+                  try {
+                    const resp = await lockProduct({ id: productId });
+                    if(resp.status !== "ok") throw new Error("Lock product api error for productId:" + productId);
+                    setIsLocked(true);
+                    setShowModal(false);
+                  } catch (err) {
+                    console.error("products api error", err)
+                  }
                 }}
                 className="inline-flex w-full justify-center rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600 sm:ml-3 sm:w-auto"
                 disabled={isLoadingProduct}

@@ -5,7 +5,7 @@ import { useState } from "react";
 import LockModal from "../lock-product-modal";
 import UnlockModal from "../unlock-product-modal";
 
-const Card = ({ name, image, defaultIsLocked }) => {
+const Card = ({ id, name, image, defaultIsLocked }) => {
   const [showLockModal, setShowLockModal] = useState(false);
   const [showUnlockModal, setShowUnlockModal] = useState(false);
   const [isLocked, setIsLocked] = useState(defaultIsLocked);
@@ -52,12 +52,14 @@ const Card = ({ name, image, defaultIsLocked }) => {
         )}
       </div>
       <LockModal
+        productId={id}
         productName={name}
         showModal={showLockModal}
         setShowModal={setShowLockModal}
         setIsLocked={setIsLocked}
       />
       <UnlockModal
+        productId={id}
         productName={name}
         showModal={showUnlockModal}
         setShowModal={setShowUnlockModal}
