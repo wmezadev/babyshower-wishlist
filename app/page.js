@@ -32,12 +32,13 @@ export default async function Home() {
           </p>
         </div>
         <CardsGrid>
-          {wishlist.products.map((product, key) => (
+          {wishlist.products.map((product) => (
             <Card
+              id={product.id}
               image={product.image}
-              key={key}
+              key={product.id}
               name={product.name}
-              defaultIsLocked={product.isLocked}
+              defaultIsLocked={product.is_locked}
             />
           ))}
         </CardsGrid>
