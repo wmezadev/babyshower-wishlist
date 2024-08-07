@@ -6,7 +6,7 @@ export async function GET(request) {
       {
         id: "1",
         name: "Kit de limpieza",
-        image: "/mamelucos.jpg",
+        image: "/products/kit-aseo.png",
         isLocked: true,
       },
       {

@@ -27,10 +27,10 @@ const Card = ({ name, image, defaultIsLocked }) => {
           alt={name}
           style={{
             width: "auto",
-            height: "200px",
+            height: "220px",
           }}
           width={500}
-          height={200}
+          height={220}
         />
       </div>
       <h2 className="text-xl font-bold my-5">{name}</h2>
