@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import Modal from "../modal";
 
 const Card = ({ name, image }) => {
   const [showModal, setShowModal] = useState(false);
@@ -23,12 +24,13 @@ const Card = ({ name, image }) => {
       <h2 className="text-xl font-bold my-5">{name}</h2>
       <div className="flex flexgap-4">
         <button
-          className="py-2.5 px-5 flex items-center justify-center rounded-full text-white bg-yellow-500 hover:bg-yellow-600 transition-all duration-500 cursor-pointer"
+          className="py-2.5 px-5 flex items-center justify-center rounded-md text-white bg-yellow-500 hover:bg-yellow-600 transition-all duration-500 cursor-pointer"
           onClick={() => setShowModal(true)}
         >
           Reservar
         </button>
       </div>
+      <Modal productName={name} showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 };
