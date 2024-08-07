@@ -15,6 +15,7 @@
 
 # production
 /build
+/.well-known/
 
 # misc
 .DS_Store
