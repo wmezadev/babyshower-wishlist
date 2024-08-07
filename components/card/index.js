@@ -2,15 +2,27 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import Modal from "../modal";
+import LockModal from "../lock-product-modal";
+import UnlockModal from "../unlock-product-modal";
 
 const Card = ({ name, image }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showLockModal, setShowLockModal] = useState(false);
+  const [showUnlockModal, setShowUnlockModal] = useState(false);
+  const [isLocked, setIsLocked] = useState(false);
 
   return (
-    <div className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] transition-all duration-500">
+    <div
+      className={`${
+        isLocked ? "bg-opacity-75 transition-opacity" : ""
+      } bg-white p-6 rounded-xl border border-gray-200 hover:shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] transition-all duration-500`}
+    >
       <div className="flex justify-center ml-auto mr-auto max-w-md">
         <Image
+          className={
+            isLocked
+              ? "bg-opacity-75 transition-opacity mix-blend-multiply"
+              : ""
+          }
           src={image}
           alt={name}
           style={{
@@ -23,14 +35,34 @@ const Card = ({ name, image }) => {
       </div>
       <h2 className="text-xl font-bold my-5">{name}</h2>
       <div className="flex flexgap-4">
-        <button
-          className="py-2.5 px-5 flex items-center justify-center rounded-md text-white bg-yellow-500 hover:bg-yellow-600 transition-all duration-500 cursor-pointer"
-          onClick={() => setShowModal(true)}
-        >
-          Reservar
-        </button>
+        {!isLocked ? (
+          <button
+            className="py-2.5 px-5 flex items-center justify-center rounded-md text-white bg-yellow-500 hover:bg-yellow-600 transition-all duration-500 cursor-pointer"
+            onClick={() => setShowLockModal(true)}
+          >
+            Reservar
+          </button>
+        ) : (
+          <button
+            className="py-2.5 px-5 flex items-center justify-center rounded-md text-white bg-gray-500 hover:bg-gray-600 transition-all duration-500 cursor-pointer"
+            onClick={() => setShowUnlockModal(true)}
+          >
+            Cancelar reserva
+          </button>
+        )}
       </div>
-      <Modal productName={name} showModal={showModal} setShowModal={setShowModal} />
+      <LockModal
+        productName={name}
+        showModal={showLockModal}
+        setShowModal={setShowLockModal}
+        setIsLocked={setIsLocked}
+      />
+      <UnlockModal
+        productName={name}
+        showModal={showUnlockModal}
+        setShowModal={setShowUnlockModal}
+        setIsLocked={setIsLocked}
+      />
     </div>
   );
 };

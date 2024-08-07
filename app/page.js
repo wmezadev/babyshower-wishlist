@@ -27,7 +27,7 @@ export default async function Home() {
         <div className="pt-5 px-7 text-white lg:text-center">
           <h2 className="text-4xl pb-2">Lista de ideas de regalos</h2>
           <p className="text-lg">
-            Puedes ver, eligir y reservar un regalo o traer cualquier otro
+            Puedes ver, eligir y reservar un regalo de forma anónima o traer cualquier otro
             presente.
           </p>
         </div>
