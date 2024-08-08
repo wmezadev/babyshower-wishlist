@@ -43,6 +43,8 @@ export default async function Home() {
               key={product.id}
               name={product.name}
               defaultIsLocked={product.is_locked}
+              availableQuantity={Number(product.available_quantity)}
+              defaultLockedQuantity={Number(product.locked_quantity)}
             />
           ))}
         </CardsGrid>

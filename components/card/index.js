@@ -5,10 +5,18 @@ import { useState } from "react";
 import LockModal from "../lock-product-modal";
 import UnlockModal from "../unlock-product-modal";
 
-const Card = ({ id, name, image, defaultIsLocked }) => {
+const Card = ({
+  id,
+  name,
+  image,
+  defaultIsLocked,
+  defaultLockedQuantity,
+  availableQuantity,
+}) => {
   const [showLockModal, setShowLockModal] = useState(false);
   const [showUnlockModal, setShowUnlockModal] = useState(false);
   const [isLocked, setIsLocked] = useState(defaultIsLocked);
+  const [lockedQuantity, setLockedQuantity] = useState(defaultLockedQuantity);
 
   return (
     <div
@@ -34,21 +42,29 @@ const Card = ({ id, name, image, defaultIsLocked }) => {
         />
       </div>
       <h2 className="text-xl font-bold my-5">{name}</h2>
-      <div className="flex flexgap-4">
+      <div className="flex justify-between" style={{ gap: "1rem" }}>
         {!isLocked ? (
           <button
             className="py-2.5 px-5 flex items-center justify-center rounded-md text-white bg-yellow-500 hover:bg-yellow-600 transition-all duration-500 cursor-pointer"
             onClick={() => setShowLockModal(true)}
           >
-            Reservar
+            Reservar {availableQuantity > 1 ? `+1` : ""}
           </button>
         ) : (
           <button
             className="py-2.5 px-5 flex items-center justify-center rounded-md text-white bg-gray-500 hover:bg-gray-600 transition-all duration-500"
             /* onClick={() => setShowUnlockModal(true)} */
           >
-            Reservado
+            Reservado{" "}
+            {availableQuantity > 1
+              ? `${lockedQuantity}/${availableQuantity}`
+              : ""}
           </button>
+        )}
+        {!isLocked && availableQuantity > 1 && (
+          <span className="flex items-center text-md">
+            {`${lockedQuantity}/${availableQuantity}`} Reservado
+          </span>
         )}
       </div>
       <LockModal
@@ -57,6 +73,7 @@ const Card = ({ id, name, image, defaultIsLocked }) => {
         showModal={showLockModal}
         setShowModal={setShowLockModal}
         setIsLocked={setIsLocked}
+        setLockedQuantity={setLockedQuantity}
       />
       {/* <UnlockModal
         productId={id}

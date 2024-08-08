@@ -14,6 +14,7 @@ export default function Modal({
   showModal,
   setShowModal,
   setIsLocked,
+  setLockedQuantity,
 }) {
   const { isLoadingProduct, lockProduct } = useProducts();
 
@@ -40,7 +41,8 @@ export default function Modal({
                   </DialogTitle>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Gracias por reservar: <b>{productName}</b>. No olvides
+                      Gracias por reservar: <b>{productName}</b>. Al Confirmar
+                      estarás reservando una unidad de este artículo. No olvides
                       traerlo al baby shower.
                     </p>
                   </div>
@@ -52,18 +54,20 @@ export default function Modal({
                 type="button"
                 onClick={async () => {
                   try {
-                    const resp = await lockProduct({ id: productId });
-                    if(resp.status !== "ok") throw new Error("Lock product api error for productId:" + productId);
-                    setIsLocked(true);
+                    const {
+                      product: { locked_quantity, is_locked },
+                    } = await lockProduct({ id: productId });
+                    setLockedQuantity(locked_quantity);
+                    setIsLocked(is_locked);
                     setShowModal(false);
                   } catch (err) {
-                    console.error("products api error", err)
+                    console.error("products api error", err);
                   }
                 }}
                 className="inline-flex w-full justify-center rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600 sm:ml-3 sm:w-auto"
                 disabled={isLoadingProduct}
               >
-                Reservar
+                Confirmar
               </button>
               <button
                 type="button"
