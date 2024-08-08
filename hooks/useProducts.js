@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function useProducts() {
   const [isLoadingProduct, setIsLoading] = useState(false);
 
-  const postToggleLockProduct = async ({ id, is_locked }) => {
+  const postToggleLockProduct = async ({ id }) => {
     let result;
     try {
       setIsLoading(true);
@@ -11,7 +11,7 @@ export default function useProducts() {
         `${process.env.NEXT_PUBLIC_APP_URL}/api/products`,
         {
           method: "POST",
-          body: JSON.stringify({ id, is_locked }),
+          body: JSON.stringify({ id }),
         }
       );
       if (!res.ok) throw new Error("Failed to fetch data");

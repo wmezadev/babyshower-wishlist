@@ -1,41 +1,38 @@
 import { NextResponse } from "next/server";
 import connectToDatabase from "../../../lib/mongodb";
 import Product from "../../../models/product";
+import Gift from "../../../models/gift";
 
 export async function GET(request) {
   try {
     await connectToDatabase();
-    const products = await Product.find({});
-    return NextResponse.json({ products });
+    const gifts = await Gift.find({});
+    return NextResponse.json({ products: gifts });
   } catch (error) {
-    return NextResponse.json(
-      { error: error, products: [] },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error, gifts: [] }, { status: 500 });
   }
 }
 
 export async function POST(request) {
   try {
-    const { id, is_locked } = await request.json();
     await connectToDatabase();
-    const result = await Product.findOneAndUpdate(
-      { id },
-      { is_locked },
-      { new: true }
-    );
-    if (!result) {
-      return NextResponse.json(
-        { error: "Product not found" },
-        { status: 404 }
-      );
-    } else {
-      return NextResponse.json({ status: "ok" });
+    const INCREMENT_BY = 1;
+    const { id } = await request.json();
+    const gift = await Gift.findOne({ id });
+    if (!gift) {
+      return NextResponse.json({ error: "gift not found" }, { status: 404 });
     }
+    if (Number(gift.locked_quantity) + INCREMENT_BY > gift.available_quantity) {
+      return NextResponse.json(
+        { error: "Cannot lock more than available quantity" },
+        { status: 400 }
+      );
+    }
+    gift.locked_quantity += INCREMENT_BY;
+    gift.is_locked = Number(gift.locked_quantity) === gift.available_quantity;
+    await gift.save();
+    return NextResponse.json({ status: "ok", product: gift });
   } catch (error) {
-    return NextResponse.json(
-      { error: "Error updating product" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error }, { status: 500 });
   }
 }
