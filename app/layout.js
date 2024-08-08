@@ -4,9 +4,9 @@ import "./globals.css";
 const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Invitación al Babyshower - Familia Meza Useche",
+  title: "Invitación al Baby shower - Familia Meza Useche",
   description:
-    "Este es nuestro Babyshower para nuestro bebé para 4 de agosto del 2024",
+    "Acompáñanos el Sábado 24 de Agosto a las 5pm presencial y virtualmente",
 };
 
 export default function RootLayout({ children }) {
