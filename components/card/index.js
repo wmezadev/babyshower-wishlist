@@ -47,7 +47,7 @@ const Card = ({ id, name, image, defaultIsLocked }) => {
             className="py-2.5 px-5 flex items-center justify-center rounded-md text-white bg-gray-500 hover:bg-gray-600 transition-all duration-500"
             /* onClick={() => setShowUnlockModal(true)} */
           >
-            Reservadoo
+            Reservado
           </button>
         )}
       </div>
