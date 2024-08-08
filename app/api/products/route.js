@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
-import pool from "../../../lib/db";
+import connectToDatabase from "../../../lib/mongodb";
+import Product from "../../../models/product";
 
 export async function GET(request) {
   try {
-    const [products] = await pool.query("SELECT * FROM products");
-    return NextResponse.json({
-      products,
-    });
+    await connectToDatabase();
+    const products = await Product.find({});
+    return NextResponse.json({ products });
   } catch (error) {
     return NextResponse.json(
-      { error: "Internal Server Error", products: [] },
+      { error: error, products: [] },
       { status: 500 }
     );
   }
@@ -18,27 +18,23 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const { id, is_locked } = await request.json();
-    const [result] = await pool.query(
-      "UPDATE products SET is_locked = ? WHERE id = ?",
-      [is_locked, id]
+    await connectToDatabase();
+    const result = await Product.findOneAndUpdate(
+      { id },
+      { is_locked },
+      { new: true }
     );
-    if (result.affectedRows === 0) {
+    if (!result) {
       return NextResponse.json(
-        {
-          error: "Product not found",
-        },
+        { error: "Product not found" },
         { status: 404 }
       );
     } else {
-      return NextResponse.json({
-        status: "ok",
-      });
+      return NextResponse.json({ status: "ok" });
     }
   } catch (error) {
     return NextResponse.json(
-      {
-        error: "Error updating product"
-      },
+      { error: "Error updating product" },
       { status: 500 }
     );
   }
