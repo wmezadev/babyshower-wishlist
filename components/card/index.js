@@ -44,10 +44,10 @@ const Card = ({ id, name, image, defaultIsLocked }) => {
           </button>
         ) : (
           <button
-            className="py-2.5 px-5 flex items-center justify-center rounded-md text-white bg-gray-500 hover:bg-gray-600 transition-all duration-500 cursor-pointer"
-            onClick={() => setShowUnlockModal(true)}
+            className="py-2.5 px-5 flex items-center justify-center rounded-md text-white bg-gray-500 hover:bg-gray-600 transition-all duration-500"
+            /* onClick={() => setShowUnlockModal(true)} */
           >
-            Cancelar reserva
+            Reservadoo
           </button>
         )}
       </div>
@@ -58,13 +58,13 @@ const Card = ({ id, name, image, defaultIsLocked }) => {
         setShowModal={setShowLockModal}
         setIsLocked={setIsLocked}
       />
-      <UnlockModal
+      {/* <UnlockModal
         productId={id}
         productName={name}
         showModal={showUnlockModal}
         setShowModal={setShowUnlockModal}
         setIsLocked={setIsLocked}
-      />
+      /> */}
     </div>
   );
 };
