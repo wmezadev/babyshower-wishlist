@@ -8,10 +8,9 @@ export default function useProducts() {
     try {
       setIsLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/products`,
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/product/${id}`,
         {
-          method: "POST",
-          body: JSON.stringify({ id }),
+          method: "PATCH"
         }
       );
       if (!res.ok) throw new Error("Failed to fetch data");

@@ -17,6 +17,14 @@ const ProductSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  available_quantity: {
+    type: Number,
+    required: true,
+  },
+  locked_quantity: {
+    type: Number,
+    required: true,
+  },
   locked_by: {
     type: String,
     required: false,
@@ -24,7 +32,7 @@ const ProductSchema = new mongoose.Schema({
   last_updated: {
     type: String,
     required: false,
-  },
+  }
 });
 
 export default mongoose.models.Product ||
