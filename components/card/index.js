@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 import LockModal from "../lock-product-modal";
-import UnlockModal from "../unlock-product-modal";
 
 const Card = ({
   id,
@@ -14,7 +13,6 @@ const Card = ({
   availableQuantity,
 }) => {
   const [showLockModal, setShowLockModal] = useState(false);
-  const [showUnlockModal, setShowUnlockModal] = useState(false);
   const [isLocked, setIsLocked] = useState(defaultIsLocked);
   const [lockedQuantity, setLockedQuantity] = useState(defaultLockedQuantity);
 
@@ -75,13 +73,6 @@ const Card = ({
         setIsLocked={setIsLocked}
         setLockedQuantity={setLockedQuantity}
       />
-      {/* <UnlockModal
-        productId={id}
-        productName={name}
-        showModal={showUnlockModal}
-        setShowModal={setShowUnlockModal}
-        setIsLocked={setIsLocked}
-      /> */}
     </div>
   );
 };
