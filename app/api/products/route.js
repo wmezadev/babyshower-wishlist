@@ -8,16 +8,14 @@ export async function GET(request) {
     const products = await Product.find({});
     // Create and return the response with headers to prevent caching
     const response = NextResponse.json({ products });
-    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    response.headers.set('Expires', '0');
-    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+    response.headers.set('Surrogate-Control', 'no-store'); 
     return response;
   } catch (error) {
     // Create and return the error response with headers to prevent caching
     const errorResponse = NextResponse.json({ error: error.message, products: [] }, { status: 500 });
-    errorResponse.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    errorResponse.headers.set('Expires', '0');
-    errorResponse.headers.set('Pragma', 'no-cache');
+    errorResponse.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+    errorResponse.headers.set('Surrogate-Control', 'no-store');
     return errorResponse;
   }
 }
