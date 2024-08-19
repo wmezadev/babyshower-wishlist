@@ -1,6 +1,11 @@
+import localFont from "next/font/local";
 import CardsGrid from "@/components/cards-grid";
 import Card from "@/components/card";
 import Image from "next/image";
+
+const StrawberryDaysFont = localFont({
+  src: "../public/fonts/strawberry-days/StrawberryDays.ttf",
+});
 
 async function getData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/products`, {
