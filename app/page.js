@@ -21,12 +21,15 @@ export default async function Home() {
   return (
     <main>
       <section className="flex justify-center ml-auto mr-auto">
-        <Image
-          width={899}
-          height={1599}
-          src="/invitation-background.jpeg"
-          alt="background invitation"
-        />
+        <div className="logo-mobile">
+          <Image
+            width={1080}
+            height={1920}
+            src="/baby-shower-logo-mobilev3.png"
+            alt="background invitation"
+          />
+        </div>
+        <div className="logo-desktop"></div>
       </section>
       <p className="py-5 px-7 text-lg text-white lg:text-center">
         Transmitiremos en vivo el babyshower para nuestros amigos y familiares
