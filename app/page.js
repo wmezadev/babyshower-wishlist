@@ -25,7 +25,7 @@ export default async function Home() {
           <Image
             width={1080}
             height={1920}
-            src="/baby-shower-logo-mobilev3.png"
+            src="/baby-shower-logo-mobile.png"
             alt="background invitation"
           />
         </div>
