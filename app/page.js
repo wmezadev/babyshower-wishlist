@@ -60,7 +60,7 @@ export default async function Home() {
       </p>
       <p className="py-5 px-7 text-lg text-white lg:text-center">
         Transmitiremos en vivo para nuestros amigos y familiares
-        en el exterior y publicaremos aqui en enlace.
+        en el exterior y publicaremos aqui el enlace.
       </p>
       <section>
         <div className="pt-5 px-7 text-white lg:text-center">
