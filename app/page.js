@@ -31,9 +31,36 @@ export default async function Home() {
         </div>
         <div className="logo-desktop"></div>
       </section>
+      <p
+        className={`${StrawberryDaysFont.className} text-2xl text-white text-center pb-3 px-2`}
+      >
+        La familia Meza Useche te invita a celebrar nuestro
+      </p>
+      <h1
+        className={`${StrawberryDaysFont.className} text-5xl md:text-7xl lg:text-8xl text-white text-center`}
+      >
+        Baby Shower
+      </h1>
+      <div className="max-w-[320px] mx-auto	py-5">
+        <div className="baby-shower-date-grid grid grid-cols-3 gap-8">
+          <div className="text-white text-center text-2xl self-center">
+            <p>Sábado</p>
+          </div>
+          <div className="text-white text-center text-2xl self-center">
+            <p className={`${StrawberryDaysFont.className} text-5xl`}>24</p>
+            <p>Agosto</p>
+          </div>
+          <div className="text-white text-center text-2xl self-center">
+            <p>5pm 🇨🇴</p>
+          </div>
+        </div>
+      </div>
       <p className="py-5 px-7 text-lg text-white lg:text-center">
-        Transmitiremos en vivo el babyshower para nuestros amigos y familiares
-        en el exterior.
+        Dirección: <a className="underline" href="https://maps.app.goo.gl/uRzfhcR43fHbfEpF6">Cl. 127D #45a-21, Bogotá</a>
+      </p>
+      <p className="py-5 px-7 text-lg text-white lg:text-center">
+        Transmitiremos en vivo para nuestros amigos y familiares
+        en el exterior y publicaremos aqui en enlace.
       </p>
       <section>
         <div className="pt-5 px-7 text-white lg:text-center">

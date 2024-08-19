@@ -26,6 +26,11 @@ main {
   background-color: #6ca3c4;
 }
 
+.baby-shower-date-grid {
+  background: linear-gradient(#ffffff, #ffffff) center / 2px 100% no-repeat,
+    linear-gradient(#ffffff, #ffffff) center / 2px 100% no-repeat;
+  background-position: 33% 0, 67% 0;
+}
 
 .logo-desktop {
   background-image: url(/baby-shower-logo-desktop.png);
