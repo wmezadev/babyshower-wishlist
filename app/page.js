@@ -9,7 +9,7 @@ const StrawberryDaysFont = localFont({
 
 async function getData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/products`, {
-    next: { revalidate: 0 }
+    next: { revalidate: 0 },
   });
   if (!res.ok) throw new Error("Failed to fetch data");
   return res.json();
@@ -42,7 +42,7 @@ export default async function Home() {
         Baby Shower
       </h1>
       <div className="max-w-[320px] mx-auto	py-5">
-        <div className="baby-shower-date-grid grid grid-cols-3 gap-8">
+        <div className="baby-shower-date-grid grid grid-cols-3 gap-8 line-through text-white">
           <div className="text-white text-center text-2xl self-center">
             <p>Sábado</p>
           </div>
@@ -56,11 +56,17 @@ export default async function Home() {
         </div>
       </div>
       <p className="py-5 px-7 text-lg text-white lg:text-center">
-        Dirección: <a className="underline" href="https://maps.app.goo.gl/uRzfhcR43fHbfEpF6">Cl. 127D #45a-21, Bogotá</a>
+        Lugar:{" "}
+        <a
+          className="underline"
+          href="https://maps.app.goo.gl/uRzfhcR43fHbfEpF6"
+        >
+          Cl. 127D #45a-21, Bogotá
+        </a>
       </p>
       <p className="py-5 px-7 text-lg text-white lg:text-center">
-        Transmitiremos en vivo para nuestros amigos y familiares
-        en el exterior y publicaremos aqui el enlace.
+        <span className="text-rose-600">¡Atencion! 🚨</span>, el evento ha sido <span className="font-bold">cancelado</span> por
+        motivos de salud de la madre. <br/> Para nuestros amigos que confirmaron asistencia prescencial, les estaremos enviando un detalle que habíamos preparado. Gracias a todos por su apoyo y buenos deseos.
       </p>
       <section>
         <div className="pt-5 px-7 text-white lg:text-center">
