@@ -1,7 +1,9 @@
+"use client";
 import localFont from "next/font/local";
 import CardsGrid from "@/components/cards-grid";
 import Card from "@/components/card";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const StrawberryDaysFont = localFont({
   src: "../public/fonts/strawberry-days/StrawberryDays.ttf",
@@ -15,8 +17,15 @@ async function getData() {
   return res.json();
 }
 
-export default async function Home() {
-  const wishlist = await getData();
+export default function Home() {
+  const [wishlist, setWishlist] = useState({ products: [] });
+  useEffect(() => {
+    const main = async () => {
+      const wishlistData = await getData();
+      setWishlist(wishlistData);
+    };
+    main();
+  }, []);
 
   return (
     <main>
@@ -65,8 +74,11 @@ export default async function Home() {
         </a>
       </p>
       <p className="py-5 px-7 text-lg text-white lg:text-center">
-        <span className="text-rose-600">¡Atencion! 🚨</span>, el evento ha sido <span className="font-bold">cancelado</span> por
-        motivos de salud de la madre. <br/> Para nuestros amigos que confirmaron asistencia prescencial, les estaremos enviando un detalle que habíamos preparado. Gracias a todos por su apoyo y buenos deseos.
+        <span className="text-rose-600">¡Atencion! 🚨</span>, el evento ha sido{" "}
+        <span className="font-bold">cancelado</span> por motivos de salud de la
+        madre. <br /> Para nuestros amigos que confirmaron asistencia
+        prescencial, les estaremos enviando un detalle que habíamos preparado.
+        Gracias a todos por su apoyo y buenos deseos.
       </p>
       <section>
         <div className="pt-5 px-7 text-white lg:text-center">
@@ -77,17 +89,18 @@ export default async function Home() {
           </p>
         </div>
         <CardsGrid>
-          {wishlist.products.map((product) => (
-            <Card
-              id={product.id}
-              image={product.image}
-              key={product.id}
-              name={product.name}
-              defaultIsLocked={product.is_locked}
-              availableQuantity={Number(product.available_quantity)}
-              defaultLockedQuantity={Number(product.locked_quantity)}
-            />
-          ))}
+          {wishlist.products.length > 0 &&
+            wishlist.products.map((product) => (
+              <Card
+                id={product.id}
+                image={product.image}
+                key={product.id}
+                name={product.name}
+                defaultIsLocked={product.is_locked}
+                availableQuantity={Number(product.available_quantity)}
+                defaultLockedQuantity={Number(product.locked_quantity)}
+              />
+            ))}
         </CardsGrid>
       </section>
     </main>
